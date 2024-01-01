@@ -1,0 +1,95 @@
+<html>
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+void main() 
+{
+    
+    gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+
+
+    void main() {
+        gl_FragColor = vec4(0.5, 0.5, 0, 1.0); // 這裡設定了顏色
+    }
+</script>
+
+<style>
+    .button {
+        border: 1px solid #3498db;
+        background: none;
+        padding: 10px 20px;
+        font-size: 20px;
+        font-family: "montserrat";
+        cursor: pointer;
+        margin: 2px;
+        transition: 0.8s;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    [class^="btn"] {
+        color: #3498db;
+    }
+
+    [class^="btn"]:hover {
+        color: #fff;
+    }
+
+    .button::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 0%;
+        background: #3498db;
+        z-index: -1;
+        transition: 0.8s;
+    }
+
+    .btn0::before,
+    .btn1::before,
+    .btn2::before,
+    .btn3::before,
+    .btn4::before {
+        top: 0;
+        border-radius: 0 0 50% 50%;
+    }
+
+    [class^="btn"]:hover::before,
+    .button:hover::before {
+        height: 180%;
+    }
+</style>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/InitShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<div class="buttons-container" id="buttons-container">
+    <button class="button btn0" id="resetButton">Reset</button>
+    <button class="button btn1" id="runButton">Run</button>
+    <button class="button btn2" id="squatButton">Squat</button>
+    <button class="button btn3" id="walkButton">Walk</button>
+    <button class="button btn4" id="jumpButton">Jump</button>
+    <p> </p>
+</div>
+
+
+<body>
+    <canvas id="gl-canvas" width="1024" height="1024" Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+</body>
+
+</html>
