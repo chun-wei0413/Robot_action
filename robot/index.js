@@ -292,11 +292,25 @@ function rightLowerLeg() {
     for(var i =0; i<6; i++) gl.drawArrays(gl.TRIANGLE_FAN, 4*i, 4);
 }
 
+var currentTorso = 0;
 function turnTorso(){
-    if(theta[torsoId] <= 50){
-        theta[torsoId] += 2;
-        initNodes(torsoId);
-    } 
+    switch (currentTorso){
+        case 0:
+        if(theta[torsoId] <= 100){
+            theta[torsoId] += 0.5;
+            initNodes(torsoId);
+        } else {
+            currentTorso = 1;
+        }
+        break;
+        case 1:
+        if(theta[torsoId] >= -100){
+            theta[torsoId] -= 0.5;
+            initNodes(torsoId);
+        } else {
+            currentTorso = 0;
+        }
+    }
 }
 var currentLeftArm= 0;
 var currentRightLeg= 0;
